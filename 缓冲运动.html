@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	#div1{position: absolute;left: 0px;top: 50px;width: 100px;height: 100px;background-color: red;}
+	#div2{width: 1px;height: 500px;position: absolute;top: 0;left: 400px;background-color: #000;}
+	</style>
+	<script>
+	window.onload=function(){
+		var oDiv=document.getElementById('div1');
+		var But=document.getElementById('but');
+		But.onclick=function  () {
+			startMove()
+		}
+
+	}
+	function startMove () {
+		var oDiv=document.getElementById('div1');
+
+		setInterval(function(){
+			var speed=(400-oDiv.offsetLeft)/10;
+
+			speed=speed>0?Math.ceil(speed):Math.floor(speed);
+			oDiv.style.left=oDiv.offsetLeft+speed+'px';
+		},30)
+	}
+	</script>
+	
+</head>
+<body>
+	<input type="button" value="缓冲运动" id="but">
+	<div id="div1"></div>
+	<div id="div2"></div>
+</body>
+</html>
