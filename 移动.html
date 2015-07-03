@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>move</title>
+	<style>
+	#fade{width: 300px;height: 300px;background-color: pink;position: absolute;left: 0;top: 50px;}
+	
+	</style>
+	<script>
+		var timer=null;
+		var Butt=document.getElementById('butt');
+		function startMove() {
+			var Fade=document.getElementById('fade');
+			clearInterval(timer);
+		   timer= setInterval(function () {
+		    	if (Fade.offsetLeft>=300) {
+		    		clearInterval(timer)
+		    	}
+		    	else{
+		    	Fade.style.left=Fade.offsetLeft+5+"px";}
+		    }, 30);
+		}
+	</script>
+</head>
+<body>
+	<div id="fade"></div>
+	<input type="button" id="butt" value="move" onclick="startMove()">
+</body>
+</html>
