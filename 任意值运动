@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<style>
+	div{width: 100px;height: 50px;background-color: red;margin: 10px; opacity: 0.3;}
+	</style>
+	<script>
+	window.onload=function(){
+		var oDiv=document.getElementsByTagName('div');
+		for (var i = 0; i < oDiv.length; i++) {
+			oDiv[i].timer=null;
+			oDiv[i].onmouseover=function(){
+				startMove(this,'opacity',100)
+			}
+			oDiv[i].onmouseout=function(){
+				startMove(this,'opacity',30)
+			}
+		}
+	}
+	function getStyle (obj,attr) {
+		return getComputedStyle(obj,false)?getComputedStyle(obj,false)[attr]:obj.currentStyle[attr];
+	}
+	function startMove (obj,attr,iTarget) {
+	 	clearInterval(obj.timer);
+	 	obj.timer=setInterval(function(){
+	 		var cur;
+	 		if (attr=='opacity') {
+	 			cur=parseFloat(getStyle (obj,attr))*100;
+	 		}else{
+	 			cur=parseInt(getStyle (obj,attr));
+	 		}
+	 		
+	 		var speed=(iTarget-cur)/6;
+	 		speed=speed>0?Math.ceil(speed):Math.floor(speed);
+
+	 		if (cur==iTarget) {
+	 			clearInterval(obj.timer);
+	 		}else{
+	 			if (attr=='opacity') {
+	 				obj.style[attr]=(cur+speed)/100;
+	 			}else{
+	 			obj.style[attr]=cur+speed+'px';
+	 		}
+	 		}
+	 	},30)
+	 }
+	</script>
+</head>
+<body>
+	<div></div>
+	<div></div>
+	<div></div>
+</body>
+</html>
